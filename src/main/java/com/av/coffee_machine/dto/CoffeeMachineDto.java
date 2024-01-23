@@ -19,10 +19,10 @@ public class CoffeeMachineDto {
     @Schema(description = "Наименование", example = "Кофемашина №1")
     private String name;
 
-    @Schema(description = "Уровень воды в кофемашине", example = "0")
+    @Schema(description = "Уровень воды в кофемашине", example = "30")
     private Integer waterLevel;
 
-    @Schema(description = "Уровень кофе в кофемашине", example = "0")
+    @Schema(description = "Уровень кофе в кофемашине", example = "30")
     private Integer coffeeLevel;
 
     @Schema(description = "Уровень грязной воды в кофемашине", example = "0")

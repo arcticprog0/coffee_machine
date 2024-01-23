@@ -8,6 +8,7 @@ import com.av.coffee_machine.mapper.CoffeeMachineMapper;
 import com.av.coffee_machine.repository.CoffeeMachineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class CoffeeMachineService {
     @Autowired
     private CoffeeMachineMapper coffeeMachineMapper;
 
+    @Transactional
     public CoffeeMachineDto getCoffeeMachine(Long id){
         /*
         return coffeeMachineRepository.findById(id)
@@ -34,6 +36,7 @@ public class CoffeeMachineService {
         return coffeeMachineMapper.toDto(coffeeMachineRepository.findById(id).orElse(null));
     }
 
+    @Transactional
     public List<CoffeeMachineDto> getAllCoffeeMachines(){
         List<CoffeeMachineEntity> coffeeMachines = coffeeMachineRepository.getAll();
         if(coffeeMachines.isEmpty()){
@@ -42,6 +45,7 @@ public class CoffeeMachineService {
         return  coffeeMachineMapper.mapList(coffeeMachines, CoffeeMachineDto.class);
     }
 
+    @Transactional
     public CoffeeMachineDto addCoffeeMachine(CoffeeMachineDto coffeeMachineDto){
 
         if (coffeeMachineDto.getWaterLevel() > 100 || coffeeMachineDto.getWaterLevel() < 0) {
@@ -54,6 +58,7 @@ public class CoffeeMachineService {
         return coffeeMachineMapper.toDto(coffeeMachineRepository.save(coffeeMachineMapper.toEntity(coffeeMachineDto)));
     }
 
+    @Transactional
     public CoffeeMachineDto makeCoffee(Long id){
         CoffeeMachineEntity coffeeMachineEntity = coffeeMachineMapper.toEntity(getCoffeeMachine(id));
 
@@ -74,6 +79,7 @@ public class CoffeeMachineService {
         return coffeeMachineMapper.toDto(coffeeMachineRepository.save(coffeeMachineEntity));
     }
 
+    @Transactional
     public CoffeeMachineDto clearCoffeeMachine(Long id){
         CoffeeMachineEntity coffeeMachineEntity = coffeeMachineMapper.toEntity(getCoffeeMachine(id));
         coffeeMachineEntity.clearCoffeeMachine();
@@ -81,6 +87,7 @@ public class CoffeeMachineService {
         return coffeeMachineMapper.toDto(coffeeMachineRepository.save(coffeeMachineEntity));
     }
 
+    @Transactional
     public CoffeeMachineDto repairCoffeeMachine(Long id){
         CoffeeMachineEntity coffeeMachineEntity = coffeeMachineMapper.toEntity(getCoffeeMachine(id));
         coffeeMachineEntity.repairCoffeeMachine();
@@ -88,7 +95,7 @@ public class CoffeeMachineService {
         return coffeeMachineMapper.toDto(coffeeMachineRepository.save(coffeeMachineEntity));
     }
 
-
+    @Transactional
     public CoffeeMachineDto deleteCoffeeMachine(Long id){
         CoffeeMachineDto coffeeMachineDto = getCoffeeMachine(id);
         if(coffeeMachineDto == null) {

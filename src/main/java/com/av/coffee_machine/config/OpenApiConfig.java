@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.info.Info;
                 contact = @Contact(
                         name = "Andrei K",
                         email = "av7001@mail.ru",
-                        url = "http://localhost:7000"
+                        url = "https://github.com/arcticprog0"
                 )
         )
 )

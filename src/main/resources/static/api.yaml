@@ -275,12 +275,12 @@ components:
           type: integer
           description: Уровень воды в кофемашине
           format: int32
-          example: 0
+          example: 30
         coffeeLevel:
           type: integer
           description: Уровень кофе в кофемашине
           format: int32
-          example: 0
+          example: 30
         dirtyWaterLevel:
           type: integer
           description: Уровень грязной воды в кофемашине
