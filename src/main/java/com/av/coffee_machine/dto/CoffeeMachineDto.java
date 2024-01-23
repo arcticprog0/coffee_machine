@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Schema(description = "Модель кофемашины")
 public class CoffeeMachineDto {
 
     @Schema(description = "Id записи в БД")

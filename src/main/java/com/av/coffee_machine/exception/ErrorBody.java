@@ -1,5 +1,6 @@
 package com.av.coffee_machine.exception;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -8,7 +9,9 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Setter
 @Getter
+@Schema(description = "Тело ошибки")
 public class ErrorBody {
 
+    @Schema(description = "Описание ошибки")
     String message;
 }

@@ -1,0 +1,299 @@
+openapi: 3.0.1
+info:
+  title: Coffee machine System Api
+  description: Coffee machine
+  contact:
+    name: Andrei K
+    url: http://localhost:7000
+    email: av7001@mail.ru
+  version: 1.0.0
+servers:
+  - url: http://localhost:7000
+    description: Generated server url
+paths:
+  /coffee-machine:
+    get:
+      tags:
+        - coffee-machine-controller
+      summary: Получить все кофемашины
+      operationId: getAllCoffeeMachines
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CoffeeMachineDto'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+        '500':
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+    put:
+      tags:
+        - coffee-machine-controller
+      summary: Обновить кофемашину
+      operationId: updateCoffeeMachine
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CoffeeMachineDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CoffeeMachineDto'
+        '500':
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+    post:
+      tags:
+        - coffee-machine-controller
+      summary: Добавить кофемашину
+      operationId: addCoffeeMachine
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CoffeeMachineDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CoffeeMachineDto'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+        '500':
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+  /coffee-machine/action/repair-machine/{id}:
+    put:
+      tags:
+        - coffee-machine-controller
+      summary: Отремонтировать кофемашину
+      operationId: updateCoffeeMachineRepair
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CoffeeMachineDto'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+        '500':
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+  /coffee-machine/action/make-coffee/{id}:
+    put:
+      tags:
+        - coffee-machine-controller
+      summary: Приготовить кофе
+      operationId: updateCoffeeMachineMakeCoffee
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CoffeeMachineDto'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+        '500':
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+  /coffee-machine/action/clear-machine/{id}:
+    put:
+      tags:
+        - coffee-machine-controller
+      summary: Почистить кофемашину
+      operationId: updateCoffeeMachineClear
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CoffeeMachineDto'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+        '500':
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+  /coffee-machine/{id}:
+    get:
+      tags:
+        - coffee-machine-controller
+      summary: Получить кофемашину по id
+      operationId: getCoffeeMachine
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CoffeeMachineDto'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+        '500':
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+    delete:
+      tags:
+        - coffee-machine-controller
+      summary: Удалить кофемашину
+      operationId: deleteCoffeeMachine
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CoffeeMachineDto'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+        '500':
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorBody'
+components:
+  schemas:
+    ErrorBody:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Описание ошибки
+      description: Тело ошибки
+    CoffeeMachineDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Id записи в БД
+          format: int64
+        name:
+          type: string
+          description: Наименование
+          example: Кофемашина №100
+        waterLevel:
+          type: integer
+          description: Уровень воды в кофемашине
+          format: int32
+          example: 0
+        coffeeLevel:
+          type: integer
+          description: Уровень кофе в кофемашине
+          format: int32
+          example: 0
+        dirtyWaterLevel:
+          type: integer
+          description: Уровень грязной воды в кофемашине
+          format: int32
+          example: 0
+        currentResource:
+          type: integer
+          description: Текущий ресурс машины (измеряется в кружках кофе)
+          format: int32
+          example: 0
+        resourceLimit:
+          type: integer
+          description: Предельный ресурс кофемашины
+          format: int32
+          example: 10
+      description: Модель кофемашины

@@ -1,9 +1,11 @@
 package com.av.coffee_machine.controller;
 
 import com.av.coffee_machine.dto.CoffeeMachineDto;
+import com.av.coffee_machine.exception.ErrorBody;
 import com.av.coffee_machine.service.CoffeeMachineService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("coffeemachines")
+@RequestMapping("coffee-machine")
 @Slf4j
 public class CoffeeMachineController {
 
@@ -25,8 +27,10 @@ public class CoffeeMachineController {
     @GetMapping(path = "/{id}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal error", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class))),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class)))
     })
     @ResponseBody
     public CoffeeMachineDto getCoffeeMachine(@PathVariable("id") Long id){
@@ -38,8 +42,10 @@ public class CoffeeMachineController {
     @GetMapping
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal error", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class))),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class)))
     })
     @ResponseBody
     public List<CoffeeMachineDto> getAllCoffeeMachines(){
@@ -51,8 +57,10 @@ public class CoffeeMachineController {
     @PostMapping
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal error", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class))),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class)))
     })
     @ResponseBody
     public CoffeeMachineDto addCoffeeMachine(@RequestBody CoffeeMachineDto coffeeMachine){
@@ -64,8 +72,8 @@ public class CoffeeMachineController {
     @PutMapping
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal error", content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class)))
     })
     @ResponseBody
     public CoffeeMachineDto updateCoffeeMachine(@RequestBody CoffeeMachineDto coffeeMachine){
@@ -77,8 +85,10 @@ public class CoffeeMachineController {
     @PutMapping(path = "/action/make-coffee/{id}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal error", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class))),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class)))
     })
     @ResponseBody
     public CoffeeMachineDto updateCoffeeMachineMakeCoffee(@PathVariable("id") Long id){
@@ -90,8 +100,10 @@ public class CoffeeMachineController {
     @PutMapping(path = "/action/clear-machine/{id}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal error", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class))),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class)))
     })
     @ResponseBody
     public CoffeeMachineDto updateCoffeeMachineClear(@PathVariable("id") Long id){
@@ -103,8 +115,10 @@ public class CoffeeMachineController {
     @PutMapping(path = "/action/repair-machine/{id}")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal error", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class))),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class)))
     })
     @ResponseBody
     public CoffeeMachineDto updateCoffeeMachineRepair(@PathVariable("id") Long id){
@@ -116,8 +130,10 @@ public class CoffeeMachineController {
     @Operation(summary = "Удалить кофемашину")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal error", content = @Content)
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class))),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(
+                    schema=@Schema(implementation = ErrorBody.class)))
     })
     @DeleteMapping(path = "/{id}")
     @ResponseBody
